@@ -13,6 +13,4 @@ Tools for Sonos and Google Home
 
 # Sonos CLI
 
-Arguements: 
-* action
-* speaker
+Use sonos --help
