@@ -9,3 +9,10 @@ Tools for Sonos and Google Home
 * Able to group sonos speakers udaing google home
 
 * play random nighttime podcost
+
+
+# Sonos CLI
+
+Arguements: 
+* action
+* speaker

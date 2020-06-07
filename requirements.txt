@@ -1,3 +1,5 @@
 soco
 requests
 click
+flake8
+autopep8

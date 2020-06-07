@@ -1,18 +1,18 @@
 import sys
 import soco
 import click
-from .speaker import Speaker
-from .func import get_speaker, stop_speaker
+from .func import get_speaker, perform_action, print_status
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 
-@click.command()
-@click.option('--speaker', default='Living Room', help='Default speaker.')
-@click.option('--action', default='', help='Default action.')
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option('--speaker', '-s', default='', help='Default speaker.')
+@click.option('--action', '-a', default='', help='Default action.')
 def main(speaker, action):
+    print_status()
     selected_speaker = get_speaker(speaker)
-    import ipdb
-    ipdb.set_trace()
-    stop_speaker(selected_speaker)
+    perform_action(selected_speaker, action)
+
 
 
 if __name__ == '__main__':
