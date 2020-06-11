@@ -2,14 +2,14 @@ import soco
 
 
 def get_speaker(speaker):
-    zone_list = list(soco.discover())
-    for zone in zone_list:
+    zones = soco.discover()
+    for zone in zones:
         if zone.player_name.lower() == speaker.lower():
             return zone
 
 
 def all_speakers(action):
-    zones = list(soco.discover())
+    zones = soco.discover()
     for zone in zones:
         if action == 'play':
             zone.play()
@@ -47,7 +47,7 @@ def get_coordinator(speaker):
 
 def print_status():
     print('Status...')
-    zones = list(soco.discover())
+    zones = soco.discover()
     for zone in zones:
         state = zone.get_current_transport_info()
         print(f"{zone.player_name} is {state['current_transport_state']}")

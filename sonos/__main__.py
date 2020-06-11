@@ -4,14 +4,8 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 
 @click.group()
-@click.option('--action', '-a', default='', help='Default action.')
 def main(action):
     print('Sonos CLI')
-
-
-@main.command()
-def stop_all():
-    all_speakers('stop')
 
 
 @main.command()
@@ -20,20 +14,26 @@ def status():
 
 
 @main.command()
-@click.option('--speaker', '-s', default='',
-              help='Default speaker.')
-def play(speaker):
-    selected_speaker = get_speaker(speaker)
-    perform_action(selected_speaker, 'play')
+@click.option('--all', '-a', is_flag=True, default=False, )
+@click.option('--speaker', '-s', default='')
+def play(speaker, all):
+    do_thing(speaker, all, 'play')
 
 
 @main.command()
-@click.option('--speaker', '-s', default='',
-              help='Default speaker.')
-def stop(speaker):
-    selected_speaker = get_speaker(speaker)
-    selected_speaker = get_coordinator(selected_speaker)
-    perform_action(selected_speaker, 'stop')
+@click.option('--all', '-a', is_flag=True, default=False, )
+@click.option('--speaker', '-s', default='')
+def stop(speaker, all):
+    do_thing(speaker, all, 'stop')
+
+
+def do_thing(speaker, all, func):
+    if all:
+        all_speakers(func)
+    else:
+        spkr = get_speaker(speaker)
+        spkr = get_coordinator(spkr)
+        perform_action(spkr, func)
 
 
 if __name__ == '__main__':
